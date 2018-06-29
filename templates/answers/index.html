@@ -26,7 +26,7 @@
 
 	{% if question.totalAnswers > 0 %}
 		{% set js %}
-			
+
 			var labels = [];
 			var series = [];
 			{% for option in options %}
@@ -65,7 +65,7 @@
 			<thead>
 				<th scope="col">{{ "ID"|t }}</th>
 				<th scope="col">{{ "Option"|t }}</th>
-				<th scope="col">{{ "User"|t }}</th>
+				{% if craft.polls.usersCanViewAnswers %}<th scope="col">{{ "User"|t }}</th>{% endif %}
 				<th scope="col">{{ "Created"|t }}</th>
 				<td class="thin"></td>
 			</thead>
@@ -74,13 +74,15 @@
 					<tr data-id="{{ answer.id }}" data-name="Answer {{ answer.id }}">
 						<th scope="row" data-title="{{ 'ID'|t }}">{{ answer.id }}</th>
 						<td scope="row" data-title="{{ 'Option'|t }}"><a href="{{ answer.option.getCpEditUrl() }}">{{ answer.option.title }}</a></td>
-						<td scope="row" data-title="{{ 'User'|t }}">
-							{% if answer.user %}
-							    <a href="{{ answer.user.getCpEditUrl() }}">{{ answer.user.username }}</a>
-							{% else %}
-							    Guest
-							{% endif %}
-						</td>
+						{% if craft.polls.usersCanViewAnswers %}
+							<td scope="row" data-title="{{ 'User'|t }}">
+								{% if answer.user %}
+									<a href="{{ answer.user.getCpEditUrl() }}">{{ answer.user.username }}</a>
+								{% else %}
+									Guest
+								{% endif %}
+							</td>
+						{% endif %}
 						<td scope="row" data-title="{{ 'Created'|t }}">{{ answer.dateCreated }}</td>
 
 						<td class="thin"><a class="delete icon" title="{{ 'Delete'|t }}" role="button"></a></td>

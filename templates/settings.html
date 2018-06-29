@@ -9,3 +9,12 @@
 	checked: settings.requireLogin,
 	errors: settings.getErrors('requireLogin')
 }) }}
+<br>
+{{ forms.lightSwitchField ({
+	label: "User answers visible"|t,
+	instructions: "Allows users to view which user voted for which answer (in the CP)"|t,
+	id: 'usersCanViewAnswers',
+	name: 'usersCanViewAnswers',
+	on: settings.usersCanViewAnswers,
+	errors: settings.getErrors('usersCanViewAnswers')
+}) }}

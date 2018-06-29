@@ -76,7 +76,7 @@ class PollsVariable
 	public function hasAnswered($questions)
 	{
 		$user = craft()->userSession->getUser();
-		foreach ($questions as $question) 
+		foreach ($questions as $question)
 		{
 			if (!craft()->polls_answers->hasAnswered($user, $question))
 			{
@@ -106,6 +106,18 @@ class PollsVariable
 
 		return new \Twig_Markup($html, craft()->templates->getTwig()->getCharset());
 	}
+
+    /**
+     * Returns if it should be allowed to view answers.
+     *
+     * @return mixed
+     */
+	public function usersCanViewAnswers()
+    {
+        $plugin = craft()->plugins->getPlugin('polls');
+        $settings = $plugin->getSettings();
+        return $settings['usersCanViewAnswers'];
+    }
 }
 
 
