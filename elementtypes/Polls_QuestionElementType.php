@@ -182,13 +182,13 @@ class Polls_QuestionElementType extends BaseElementType
 					'count' => $optionsCount,
 				);
 
-				$html = '<a href="{url}">Edit options ({count})</a>';
-				if ($optionsCount > 0) 
+				$html = '<a href="{url}">' . Craft::t('Edit options') . ' ({count})</a>';
+				if ($optionsCount > 0)
 				{
 					$html .= '<a class="menubtn options-menubtn" title="Options"></a>';
 					$html .= '<div class="menu">';
 					$html .= '<ul>';
-					foreach ($question->options as $optionRecord) 
+					foreach ($question->options as $optionRecord)
 					{
 						$option = Polls_OptionModel::populateModel($optionRecord);
 						$html .= '<li>';
@@ -210,7 +210,7 @@ class Polls_QuestionElementType extends BaseElementType
 					'count' => $question->totalAnswers,
 				);
 
-				$html = '<a href="{url}">Edit answers ({count})</a>';
+				$html = '<a href="{url}">' . Craft::t('Edit answers') . ' ({count})</a>';
 
 				return HtmlHelper::encodeParams($html, $params);
 			}
